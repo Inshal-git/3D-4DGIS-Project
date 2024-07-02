@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karlsruhe Palace Visualization</title>
+    <script src="https://cesium.com/downloads/cesiumjs/releases/1.117/Build/Cesium/Cesium.js"></script>
+    <link href="https://cesium.com/downloads/cesiumjs/releases/1.117/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+    <style>
+        html, body, #cesiumContainer {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        .cesium-infoBox-description {
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div id="cesiumContainer"></div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Initialize the Cesium Viewer
+            var viewer = new Cesium.Viewer('cesiumContainer', {
+                imageryProvider: new Cesium.IonImageryProvider({ assetId: 2 })
+            });
+
+            // Set the camera view to Karlsruhe Palace
+            viewer.camera.setView({
+                destination: Cesium.Cartesian3.fromDegrees(8.4044, 49.0141, 1000.0),
+                orientation: {
+                    heading: Cesium.Math.toRadians(0.0),
+                    pitch: Cesium.Math.toRadians(-90.0),
+                    roll: 0.0
+                }
+            });
+
+            // Define the outline of Karlsruhe Palace
+            var palaceOutline = viewer.entities.add({
+                id: 'karlsruhePalace',
+                name: 'Karlsruhe Palace',
+                polygon: {
+                    hierarchy: Cesium.Cartesian3.fromDegreesArray([
+                        8.402539, 49.013462,
+                        8.402567, 49.013481,
+                        8.402555, 49.013494,
+                        8.402651, 49.013545,
+                        8.402666, 49.013538,
+                        8.402702, 49.013553,
+                        8.402947, 49.013370,
+                        8.403087, 49.013448,
+                        8.403087, 49.013448,
+                        8.403224, 49.013336,
+                        8.403305, 49.013274,
+                        8.403344, 49.013292,
+                        8.403357, 49.013284,
+                        8.403795, 49.013545,
+                        8.403805, 49.013640,
+                        8.403753, 49.013644,
+                        8.403761, 49.013712,
+                        8.403813, 49.013712,
+                        8.403848, 49.013731,
+                        8.403884, 49.013729,
+                        8.403914, 49.013708,
+                        8.403967, 49.013705,
+                        8.403964, 49.013631,
+                        8.404283, 49.013618,
+                        8.404296, 49.013716,
+                        8.404352, 49.013947,
+                        8.404365, 49.014007,
+                        8.404413, 49.014033,
+                        8.404481, 49.014027,
+                        8.404525, 49.013993,
+                        8.404528, 49.013946,
+                        8.404487, 49.013715,
+                        8.404533, 49.013713,
+                        8.404536, 49.013712,
+                        8.404525, 49.013618,
+                        8.404809, 49.013610,
+                        8.404825, 49.013676,
+                        8.404890, 49.013666,
+                        8.404923, 49.013682,
+                        8.404965, 49.013682,
+                        8.405049, 49.013655,
+                        8.405048, 49.013576,
+                        8.404996, 49.013575,
+                        8.405395, 49.013182,
+                        8.405499, 49.013240,
+                        8.405652, 49.013335,
+                        8.405782, 49.013246,
+                        8.406064, 49.013402,
+                        8.406204, 49.013299,
+                        8.405771, 49.013038,
+                        8.405535, 49.013210,
+                        8.405437, 49.013151,
+                        8.405463, 49.013129,
+                        8.405421, 49.013111,
+                        8.405413, 49.013085,
+                        8.405360, 49.013055,
+                        8.405340, 49.013054,
+                        8.405297, 49.013035,
+                        8.404825, 49.013394,
+                        8.404704, 49.013401,
+                        8.404718, 49.013468,
+                        8.404047, 49.013501,
+                        8.404035, 49.013440,
+                        8.403934, 49.013442,
+                        8.403371, 49.013130,
+                        8.403239, 49.013224,
+                        8.403262, 49.013245,
+                        8.403179, 49.013314,
+                        8.402918, 49.013166,
+                        8.402535, 49.013462
+                    ]),
+                    extrudedHeight: 30.0,
+                    material: Cesium.Color.YELLOW.withAlpha(0.5),
+                    outline: true,
+                    outlineColor: Cesium.Color.BLACK
+                }
+            });
+
+            // Add a description to the building
+            palaceOutline.description = `
+                <h2>Karlsruhe Palace</h2>
+                <p>The Karlsruhe Palace is a baroque palace in the center of Karlsruhe, Germany. 
+                It was built in 1715 by Margrave Charles III William of Baden-Durlach. 
+                Today, it houses the Baden State Museum.</p>
+                <ul>
+                    <li><b>Location:</b> Karlsruhe, Germany</li>
+                    <li><b>Constructed:</b> 1715</li>
+                    <li><b>Current Use:</b> Museum</li>
+                </ul>
+            `;
+
+            // Fly to the palace when the entity is clicked
+            viewer.selectedEntityChanged.addEventListener(function(entity) {
+                if (entity === palaceOutline) {
+                    viewer.flyTo(palaceOutline);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
