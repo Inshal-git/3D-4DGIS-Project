@@ -20,6 +20,7 @@ Entity Definition: Defines the outline and extruded height of the Karlsruhe Pala
 
 Material and Outline: The palace polygon is styled with a semi-transparent yellow material and a black outline.
 # How to Run
+
 Clone the repository to your local machine.
 
 Run the file in your IDE (Pycharm/ VS Code) or open the index.html file in a web browser (Firefox for best results).
