@@ -22,6 +22,6 @@ Material and Outline: The palace polygon is styled with a semi-transparent yello
 # How to Run
 Clone the repository to your local machine.
 
-Open the index.html file in a web browser (Firefox mainly) to view the visualization.
+Run the file in your IDE (Pycharm/ VS Code) or open the index.html file in a web browser (Firefox for best results).
 
-Interact with the map to explore the Karlsruhe Palace and read the historical information provided.
+Interact with the 3d visualisation of the Karlsruhe Palace on the map.
